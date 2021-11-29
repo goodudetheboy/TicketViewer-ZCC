@@ -17,6 +17,8 @@ public class ClientTest {
 
     @Test
     public void ticketRetrievalTest() throws IOException {
-        // System.out.println(TicketRetriever.fuck());
+        ZendeskClient client = createTestClient();
+        TicketData ticketData = client.getTicketData(1, 10);
+        assertEquals(1, ticketData.tickets.get(0).id);
     }
 }

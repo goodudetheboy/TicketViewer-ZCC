@@ -31,4 +31,13 @@ public class Ticket {
     public Ticket() {
         // empty constructor
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Ticket [" + id + "] ");
+        sb.append("(" + subject + ") ");
+        sb.append("- Created at: " + createdAt);
+        return sb.toString();
+    }
 }
