@@ -40,7 +40,7 @@ public class Ticket {
 
         sb.append("\t From: " + requesterId + "\n");
         sb.append("\t Subject: " + subject + "\n\n");
-        sb.append("\t\t " + fDesc + "\n\n");
+        sb.append("\t " + fDesc + "\n\n");
         sb.append("\t Created at: " + createdAt + "\t\t Status: " + status + "\n");
 
         return sb.toString();

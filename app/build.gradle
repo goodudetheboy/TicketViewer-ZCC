@@ -28,9 +28,19 @@ dependencies {
 
     // For parsing response JSON from the Zendesk server.
     implementation 'com.google.code.gson:gson:2.8.9'
+
+    // Provides nice word formatting for the CLI.
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.zendesk.zccvho.ticketviewer.App'
+    mainClass = 'com.zendesk.zccvho.ticketviewer.TicketViewer'
+}
+
+run { 
+    standardInput = System.in 
+    classpath = sourceSets.main.runtimeClasspath
+    args('false')
 }

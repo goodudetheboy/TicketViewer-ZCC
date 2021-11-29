@@ -21,7 +21,6 @@ public class TicketDeserializer implements JsonDeserializer<Ticket> {
         // t.solved = jsonObject.get("solved").getAsBoolean();
         t.subject = jsonObject.get("subject").getAsString();
         t.description = jsonObject.get("description").getAsString();
-        System.out.println(jsonObject.get("requester_id"));
         t.requesterId = jsonObject.get("requester_id").getAsString();
         t.status = jsonObject.get("status").getAsString();
         t.id = jsonObject.get("id").getAsInt();
