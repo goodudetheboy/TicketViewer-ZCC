@@ -29,8 +29,15 @@ public class ZendeskClient {
     public String getZendeskUrl() {
         return zendeskUrl;
     }
-        
+
+    public String getUsername() {
+        return username;
+    }
+
     public void setZendeskUrl(String zendeskUrl) {
+        zendeskUrl += ((zendeskUrl.endsWith(".zendesk.com") || (zendeskUrl.endsWith(".zendesk.com/"))) ? "" : ".zendesk.com/");
+        zendeskUrl += (zendeskUrl.endsWith("/") ? "" : "/");
+        zendeskUrl = (zendeskUrl.startsWith("https://") ?  "" : "https://") + zendeskUrl;
         this.zendeskUrl = zendeskUrl;
     }
 
@@ -75,24 +82,14 @@ public class ZendeskClient {
     }
 
     /**
-     * Authenticate with Zendesk API.
+     * Authenticate with Zendesk API using input username and password/API token.
      * 
      * @return true if authentication is successful, false otherwise
      * @throws IOException if there is an error connecting to Zendesk, or bad
      *      username or password
      */
     public boolean authenticate() throws IOException {
-        return connect().getResponseCode() == 200 || connect().getResponseCode() == 201;
-    }
-
-    /**
-     * Connect to Zendesk API, with no options.
-     * 
-     * @return the HttpURLConnection object whose connection is to the Zendesk API
-     * @throws IOException if there is an error connecting to Zendesk
-     */
-    public HttpURLConnection connect() throws IOException {
-        return connect("");
+        return connect("/api/v2/tickets.json").getResponseCode() == 200 || connect("/api/v2/tickets.json").getResponseCode() == 201;
     }
 
     /**
