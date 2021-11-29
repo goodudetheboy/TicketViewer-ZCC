@@ -35,9 +35,9 @@ public class Ticket {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[" + status + "] ");
-        sb.append("Ticket [" + id + "] ");
-        sb.append("(Subject: " + subject + ") ");
+        sb.append("[" + status + "]  \t");
+        sb.append("Ticket [" + id + "] \t");
+        sb.append("Subject: " + Utils.prettifyString(subject, 40) + " ");
         sb.append("- Created at: " + createdAt + " ");
         sb.append(" by: " + requesterId);
         return sb.toString();
