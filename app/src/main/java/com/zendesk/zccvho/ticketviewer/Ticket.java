@@ -3,7 +3,7 @@ package com.zendesk.zccvho.ticketviewer;
 import java.util.List;
 
 public class Ticket {
-    int             assigneId;
+    String          assigneId;
     boolean         canBeSolvedByMe;
     List<String>    collaboratorsIds;
     String          createdAt;
@@ -12,13 +12,13 @@ public class Ticket {
     String          dueAt;
     List<String>    emailCCIds;
     int             followupSourceId;
-    int             groupId;
+    String          groupId;
     int             id;
     boolean         isPublic;
-    int             organizationId;
+    String          organizationId;
     String          priority;
     String          recipient;
-    int             requesterId;
+    String          requesterId;
     boolean         solved;
     String          status;
     String          subject;
@@ -35,9 +35,11 @@ public class Ticket {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("[" + status + "] ");
         sb.append("Ticket [" + id + "] ");
-        sb.append("(" + subject + ") ");
-        sb.append("- Created at: " + createdAt);
+        sb.append("(Subject: " + subject + ") ");
+        sb.append("- Created at: " + createdAt + " ");
+        sb.append(" by: " + requesterId);
         return sb.toString();
     }
 }
