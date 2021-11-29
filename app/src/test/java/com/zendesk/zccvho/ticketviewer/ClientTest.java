@@ -9,7 +9,7 @@ public class ClientTest {
 
     public static ZendeskClient createTestClient() throws IOException {
         ZendeskClient client = new ZendeskClient();
-        client.setZendeskUrl("https://zccvho.zendesk.com/");
+        client.setZendeskUrl("https://zccvho.zendesk.com/"); // change value here to test
         client.setUsername("xxx"); // change value here to test
         client.setPassword("xxx"); // change value here to test
         assertTrue("Can't connect with input username and password", client.authenticate());
@@ -19,9 +19,9 @@ public class ClientTest {
     @Test
     public void userAuthTest() throws IOException {
         ZendeskClient client = new ZendeskClient();
-        client.setZendeskUrl("https://zccvho.zendesk.com/");
-        client.setUsername("xxx");
-        client.setPassword("xxx");
+        client.setZendeskUrl("https://zccvho.zendesk.com/"); // change value here to test
+        client.setUsername("xxx"); // change value here to test
+        client.setPassword("xxx"); // change value here to test
         assertTrue(client.authenticate());
     }
 
