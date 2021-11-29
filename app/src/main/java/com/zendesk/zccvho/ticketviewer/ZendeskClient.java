@@ -44,13 +44,22 @@ public class ZendeskClient {
         this.apiToken = apiToken;
     }
 
-    public String getTicketJSONData() throws IOException {
-        String authString = "Basic " + Base64.encodeBase64String((username + ":" + password).getBytes());
-        URL url = new URL("https://zccvho.zendesk.com//api/v2/tickets.json");
-        HttpURLConnection http = (HttpURLConnection)url.openConnection();
-        http.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-        http.setRequestProperty("Authorization", "Basic " + authString);
-        return http.getContentType();
+    public String getTicketJSONData(int ticketPerPage) throws IOException {
+        HttpURLConnection ticketConnection = connect("api/v2/tickets.json?per_page=" + ticketPerPage);
+        switch (ticketConnection.getResponseCode()) {
+            case 200:
+            case 201:
+                BufferedReader br = new BufferedReader(new InputStreamReader(ticketConnection.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line+"\n");
+                }
+                br.close();
+                return sb.toString();
+            default:
+                throw new IOException("HTTP response code: " + ticketConnection.getResponseCode());
+        }
     }
 
     public boolean authenticate() throws IOException {
